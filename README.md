@@ -6,7 +6,7 @@ To reproduce the issue:
 
 2. Run `mvn clean test -Pnative` in the `child-module` of the project. It will pass.
 
-Issue: If you try running tests in native mode in the root directory of the project, the plugin does not seem to detect the generated test-ids file and will enter **test discovery** mode:
+Issue: If you try running tests in native mode in the root directory of the project, the plugin does not seem to detect the generated test-ids file and will enter **test discovery** mode (which does not work):
 
 ```
 WARNING: Failed to find com.google.common.util.concurrent.AbstractFuture on the classpath for reflection.
