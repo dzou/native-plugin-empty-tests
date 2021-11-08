@@ -26,6 +26,23 @@
     </dependency>
   </dependencies>
 
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.0.0-M5</version>
+        <dependencies>
+          <dependency>
+            <groupId>org.apache.maven.surefire</groupId>
+            <artifactId>surefire-junit47</artifactId>
+            <version>3.0.0-M5</version>
+          </dependency>
+        </dependencies>
+      </plugin>
+    </plugins>
+  </build>
+
   <profiles>
     <profile>
       <id>native</id>
@@ -33,24 +50,9 @@
       <build>
         <plugins>
           <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-surefire-plugin</artifactId>
-            <version>3.0.0-M5</version>
-            <configuration>
-              <!-- Include all tests during native image testing. -->
-              <excludes combine.self="override" />
-              <reportNameSuffix>xxxx</reportNameSuffix>
-              <systemProperties>
-                <junit.platform.listeners.uid.tracking.enabled>true</junit.platform.listeners.uid.tracking.enabled>
-                <junit.platform.listeners.uid.tracking.output.dir>${project.build.directory}/testids</junit.platform.listeners.uid.tracking.output.dir>
-              </systemProperties>
-            </configuration>
-          </plugin>
-
-          <plugin>
             <groupId>org.graalvm.buildtools</groupId>
             <artifactId>native-maven-plugin</artifactId>
-            <version>0.9.6</version>
+            <version>0.9.7.1</version>
             <extensions>true</extensions>
             <executions>
               <execution>
