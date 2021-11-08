@@ -4,21 +4,29 @@ To reproduce the issue:
 
 1. Run `mvn clean test -Pnative` in the root of the project. It will fail.
 
-2. Run `mvn clean test -Pnative` in the `child-module` of the project. It will pass.
+```
+Execution test-native of goal org.graalvm.buildtools:native-maven-plugin:0.9.7.1:test failed: Test configuration file wasn't found. ->
+```
 
-Issue: If you try running tests in native mode in the root directory of the project, the plugin does not seem to detect the generated test-ids file and will enter **test discovery** mode (which does not work):
+2. Then, try removing the `surefire-junit47` dependency to make the tests pass. Run `mvn clean test -Pnative` again.
 
 ```
-WARNING: Failed to find com.google.common.util.concurrent.AbstractFuture on the classpath for reflection.
-Oct 20, 2021 5:37:13 PM com.google.cloud.nativeimage.features.NativeImageUtils registerClassForReflection
-WARNING: Failed to find com.google.common.util.concurrent.AbstractFuture$Waiter on the classpath for reflection.
-[junit-platform-native] Running in 'test discovery' mode. Note that this is a fallback mode.
-Fatal error:org.junit.platform.commons.JUnitException: TestEngine with ID 'junit-vintage' failed to discover tests
-	at org.junit.platform.launcher.core.EngineDiscoveryOrchestrator.discoverEngineRoot(EngineDiscoveryOrchestrator.java:160)
-	at org.junit.platform.launcher.core.EngineDiscoveryOrchestrator.discoverSafely(EngineDiscoveryOrchestrator.java:134)
-	at org.junit.platform.launcher.core.EngineDiscoveryOrchestrator.discover(EngineDiscoveryOrchestrator.java:108)
-	at org.junit.platform.launcher.core.EngineDiscoveryOrchestrator.discover(EngineDiscoveryOrchestrator.java:80)
-	at org.junit.platform.launcher.core.DefaultLauncher.discover(DefaultLauncher.java:110)
-	at org.junit.platform.launcher.core.DefaultLauncher.discover(DefaultLauncher.java:78)
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.0.0-M5</version>
 
+        <!-- Remove this dependency to make it pass. -->
+        <dependencies>
+          <dependency>
+            <groupId>org.apache.maven.surefire</groupId>
+            <artifactId>surefire-junit47</artifactId>
+            <version>3.0.0-M5</version>
+          </dependency>
+        </dependencies>
+      </plugin>
+    </plugins>
+  </build>
 ```
