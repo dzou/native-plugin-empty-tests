@@ -1,0 +1,8 @@
+[
+  ["org.mockito.plugins.PluginSwitch"],
+  ["org.mockito.plugins.MockMaker"],
+  ["org.mockito.plugins.StackTraceCleanerProvider"],
+  ["org.mockito.plugins.AnnotationEngine"],
+  ["org.mockito.plugins.MockitoLogger"],
+  ["org.mockito.plugins.InstantiatorProvider2"]
+]
