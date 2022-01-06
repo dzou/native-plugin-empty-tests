@@ -9,12 +9,14 @@ It will fail with error:
 [INFO] ------------------------------------------------------------------------
 [INFO] Reactor Summary for native-junit-experiment 1.0-SNAPSHOT:
 [INFO] 
-[INFO] native-junit-experiment ............................ SUCCESS [  0.043 s]
-[INFO] empty-test-module .................................. FAILURE [  0.606 s]
+[INFO] native-junit-experiment ............................ SUCCESS [  0.051 s]
+[INFO] empty-test-module .................................. FAILURE [  0.544 s]
+[INFO] simple-module ...................................... SKIPPED
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD FAILURE
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  0.857 s
-[INFO] Finished at: 2022-01-06T10:00:07-05:00
+[INFO] Total time:  0.860 s
+[INFO] Finished at: 2022-01-06T10:09:52-05:00
+
 
 ```
